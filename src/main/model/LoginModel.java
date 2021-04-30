@@ -18,7 +18,7 @@ public class LoginModel {
         if (connection == null)
             System.exit(1);
 
-        }
+    }
 
     public Boolean isDbConnected(){
         try {
@@ -56,5 +56,32 @@ public class LoginModel {
         }
 
     }
+
+    public void register(String firstname, String lastname, String age, String username, String password) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        try {
+            String query = "INSERT INTO Employee (firstname, lastname, age, username, password)"
+                    + "VALUES (?, ?, ?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, firstname);
+            preparedStatement.setString(2, lastname);
+            preparedStatement.setString(3, age);
+            preparedStatement.setString(4, username);
+            preparedStatement.setString(5, password);
+
+            preparedStatement.execute();
+
+        }catch (Exception e)
+        {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }finally {
+            preparedStatement.close();
+
+        }
+
+    }
+
 
 }
