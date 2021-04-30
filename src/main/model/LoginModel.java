@@ -18,7 +18,7 @@ public class LoginModel {
         if (connection == null)
             System.exit(1);
 
-    }
+        }
 
     public Boolean isDbConnected(){
         try {

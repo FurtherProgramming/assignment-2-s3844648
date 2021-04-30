@@ -24,11 +24,8 @@ public class RegisterController implements Initializable {
 
     }
 
-    public void swap(ActionEvent actionEvent) {
-        if (name.getText().equals("Dave")){
-            name.setText("Steve");
-        }else
-            name.setText("Dave");
+    public void register(ActionEvent actionEvent) {
+
     }
 }
 
