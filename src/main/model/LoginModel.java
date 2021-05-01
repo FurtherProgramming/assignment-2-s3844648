@@ -1,7 +1,6 @@
 package main.model;
 
 import main.SQLConnection;
-import org.sqlite.SQLiteConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,8 +11,15 @@ public class LoginModel {
 
     Connection connection;
 
-    public LoginModel(){
+    public boolean isLoggedIn = false;
+    public User currentUser;
+    public int userID;
+    public String firstName;
+    public String lastName;
+    public int age;
+    public String username;
 
+    public LoginModel(){
         connection = SQLConnection.connect();
         if (connection == null)
             System.exit(1);
@@ -41,6 +47,14 @@ public class LoginModel {
 
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
+                isLoggedIn = true;
+                userID = resultSet.getInt(1);
+                firstName = resultSet.getString(2);
+                lastName = resultSet.getString(3);
+                age = resultSet.getInt(4);
+                username = resultSet.getString(5);
+
+                currentUser = new User(userID, firstName, lastName, age, username);
                 return true;
             }
             else{
@@ -72,6 +86,8 @@ public class LoginModel {
 
             preparedStatement.execute();
 
+
+
         }catch (Exception e)
         {
             System.err.println("Got an exception!");
@@ -82,6 +98,4 @@ public class LoginModel {
         }
 
     }
-
-
 }

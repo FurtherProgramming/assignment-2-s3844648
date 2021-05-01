@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 import main.model.LoginModel;
+import main.model.User;
 
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +19,8 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    public LoginModel loginModel = new LoginModel();
+    private LoginModel loginModel = new LoginModel();
+    public User currentUser;
 
     private Stage stage;
     private Scene scene;
@@ -49,24 +51,27 @@ public class LoginController implements Initializable {
 
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-
+                System.out.println(loginModel.currentUser.getName());;
                 isConnected.setText("Logged in successfully");
-                //root = FXMLLoader.load(getClass().getResource("../ui/home.fxml"));
-                //stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                //scene = new Scene(root);
-                //stage.setTitle("Home");
-                //stage.setResizable(false);
-                //stage.setScene(scene);
-                //stage.show();
+                root = FXMLLoader.load(getClass().getResource("../ui/home.fxml"));
+                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setTitle("Home");
+                stage.setResizable(false);
+                stage.setScene(scene);
+                stage.show();
             }else{
                 isConnected.setText("username and password is incorrect");
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
     }
 
+
+
     public void goToRegister(ActionEvent actionEvent) throws IOException {
+
         root = FXMLLoader.load(getClass().getResource("../ui/register.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
@@ -75,10 +80,4 @@ public class LoginController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
-    //11.2.3 big sur
-
-
-
 }
