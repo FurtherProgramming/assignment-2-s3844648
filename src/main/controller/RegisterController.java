@@ -59,7 +59,5 @@ public class RegisterController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
 

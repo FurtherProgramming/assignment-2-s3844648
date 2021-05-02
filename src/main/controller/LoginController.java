@@ -20,7 +20,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     private LoginModel loginModel = new LoginModel();
-    public User currentUser;
+    private User currentUser;
 
     private Stage stage;
     private Scene scene;
@@ -51,15 +51,9 @@ public class LoginController implements Initializable {
 
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-                System.out.println(loginModel.currentUser.getName());;
+                currentUser = loginModel.getCurrentUser();
                 isConnected.setText("Logged in successfully");
-                root = FXMLLoader.load(getClass().getResource("../ui/home.fxml"));
-                stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-                scene = new Scene(root);
-                stage.setTitle("Home");
-                stage.setResizable(false);
-                stage.setScene(scene);
-                stage.show();
+                goToHome(actionEvent);
             }else{
                 isConnected.setText("username and password is incorrect");
             }
@@ -68,7 +62,23 @@ public class LoginController implements Initializable {
         }
     }
 
+    public void goToHome(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("../ui/home.fxml"));
+        root = loader.load();
 
+        scene = new Scene(root);
+
+        HomeController controller = loader.getController();
+        controller.initData(currentUser);
+
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("Home");
+        stage.setResizable(false);
+
+        stage.setScene(scene);
+        stage.show();
+    }
 
     public void goToRegister(ActionEvent actionEvent) throws IOException {
 

@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.model.LoginModel;
+import main.model.User;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +15,7 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
 
     private LoginModel loginModel;
+    private User currentUser;
 
     private Stage stage;
     private Scene scene;
@@ -25,10 +27,11 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        //welcomeMessage.setText();
     }
 
-    public void initData(LoginModel loginModel){
+    public void initData(User user){
+        currentUser = user;
+        welcomeMessage.setText("Welcome back, " + currentUser.getName());
     }
 
 }

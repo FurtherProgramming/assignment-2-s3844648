@@ -71,6 +71,10 @@ public class LoginModel {
 
     }
 
+    public User getCurrentUser(){
+        return currentUser;
+    }
+
     public void register(String firstname, String lastname, String age, String username, String password) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
