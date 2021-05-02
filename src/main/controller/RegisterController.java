@@ -33,6 +33,12 @@ public class RegisterController implements Initializable {
     private TextField txtUsername;
     @FXML
     private TextField txtPassword;
+    @FXML
+    private TextField txtRole;
+    @FXML
+    private TextField txtQuestion;
+    @FXML
+    private TextField txtAnswer;
 
 
     // Check database connection
@@ -43,18 +49,18 @@ public class RegisterController implements Initializable {
 
     public void register(ActionEvent actionEvent) {
         try{
-            loginModel.register(txtFirstName.getText(), txtLastName.getText(), txtAge.getText(), txtUsername.getText(), txtPassword.getText());
-            goToRegister(actionEvent);
+            loginModel.register(txtFirstName.getText(), txtLastName.getText(), txtAge.getText(), txtUsername.getText(), txtPassword.getText(), txtRole.getText(), txtQuestion.getText(), txtAnswer.getText());
+            goToLogin(actionEvent);
         } catch (SQLException | IOException throwables) {
             throwables.printStackTrace();
         }
     }
 
-    public void goToRegister(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../ui/home.fxml"));
+    public void goToLogin(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
         stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         scene = new Scene(root);
-        stage.setTitle("Home");
+        stage.setTitle("Login");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

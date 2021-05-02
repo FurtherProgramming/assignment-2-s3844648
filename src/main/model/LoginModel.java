@@ -71,15 +71,11 @@ public class LoginModel {
 
     }
 
-    public User getCurrentUser(){
-        return currentUser;
-    }
-
-    public void register(String firstname, String lastname, String age, String username, String password) throws SQLException {
+    public void register(String firstname, String lastname, String age, String username, String password, String role, String question, String answer) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
-            String query = "INSERT INTO Employee (firstname, lastname, age, username, password)"
-                    + "VALUES (?, ?, ?, ?, ?)";
+            String query = "INSERT INTO Employee (firstname, lastname, age, username, password, role, question, answer)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, firstname);
@@ -87,19 +83,21 @@ public class LoginModel {
             preparedStatement.setString(3, age);
             preparedStatement.setString(4, username);
             preparedStatement.setString(5, password);
+            preparedStatement.setString(6, role);
+            preparedStatement.setString(7, question);
+            preparedStatement.setString(8, answer);
 
             preparedStatement.execute();
-
-
-
         }catch (Exception e)
         {
             System.err.println("Got an exception!");
             System.err.println(e.getMessage());
         }finally {
             preparedStatement.close();
-
         }
+    }
 
+    public User getCurrentUser(){
+        return currentUser;
     }
 }
