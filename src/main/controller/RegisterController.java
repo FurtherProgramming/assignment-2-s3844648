@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
-    public LoginModel loginModel;
+    public LoginModel loginModel = new LoginModel();
 
     private Stage stage;
     private Scene scene;
