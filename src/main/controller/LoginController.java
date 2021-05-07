@@ -69,6 +69,9 @@ public class LoginController implements Initializable {
 
         scene = new Scene(root);
 
+        String css = this.getClass().getResource("../ui/styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+
         HomeController controller = loader.getController();
         controller.initData(currentUser);
 

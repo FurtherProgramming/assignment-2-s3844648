@@ -1,9 +1,11 @@
 package main.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.model.LoginModel;
@@ -23,6 +25,8 @@ public class HomeController implements Initializable {
 
     @FXML
     private Label welcomeMessage;
+    @FXML
+    private Button table1;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -34,4 +38,7 @@ public class HomeController implements Initializable {
         welcomeMessage.setText("Welcome back, " + currentUser.getName());
     }
 
+    public void tableTest(ActionEvent actionEvent) {
+        table1.setStyle("-fx-background-color: #bd0606");
+    }
 }
