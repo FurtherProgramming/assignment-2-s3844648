@@ -15,7 +15,7 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e400" height="292.0" layoutX="27.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" width="555.0" />
-      <Button fx:id="table1" layoutX="259.0" layoutY="219.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1" layoutX="47.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
       <ButtonBar prefHeight="40.0" prefWidth="608.0">
         <buttons>
             <Button mnemonicParsing="false" text="Manage bookings" />
@@ -23,5 +23,20 @@
           <Button mnemonicParsing="false" text="Log out" />
         </buttons>
       </ButtonBar>
+      <Button fx:id="table11" layoutX="167.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table111" layoutX="305.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table112" layoutX="441.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table113" layoutX="167.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table114" layoutX="47.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1131" layoutX="305.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1132" layoutX="441.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1141" layoutX="305.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1142" layoutX="167.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1143" layoutX="47.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table11411" layoutX="441.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table11431" layoutX="441.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table11432" layoutX="305.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table11433" layoutX="167.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table11434" layoutX="47.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
    </children>
 </AnchorPane>

@@ -18,6 +18,8 @@ public class LoginModel {
     public String lastName;
     public int age;
     public String username;
+    public String question;
+    public String answer;
 
     public LoginModel(){
         connection = SQLConnection.connect();
@@ -71,6 +73,63 @@ public class LoginModel {
 
     }
 
+    public Boolean isUsername(String user) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from employee where username = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, user);
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                isLoggedIn = true;
+                userID = resultSet.getInt(1);
+                firstName = resultSet.getString(2);
+                lastName = resultSet.getString(3);
+                age = resultSet.getInt(4);
+                username = resultSet.getString(5);
+                question = resultSet.getString(8);
+                answer = resultSet.getString(9);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+    }
+
+    public void updatePassword(String user, String pass) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "UPDATE Employee SET password = ? WHERE username = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, pass);
+            preparedStatement.setString(2, user);
+
+            resultSet = preparedStatement.executeQuery();
+        }
+        catch (Exception e)
+        {
+
+        }finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+    }
+
     public void register(String firstname, String lastname, String age, String username, String password, String role, String question, String answer) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
@@ -99,5 +158,17 @@ public class LoginModel {
 
     public User getCurrentUser(){
         return currentUser;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
