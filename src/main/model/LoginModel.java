@@ -110,7 +110,6 @@ public class LoginModel {
 
     public void updatePassword(String user, String pass) throws SQLException {
         PreparedStatement preparedStatement = null;
-        ResultSet resultSet=null;
         String query = "UPDATE Employee SET password = ? WHERE username = ?";
         try {
 
@@ -118,14 +117,13 @@ public class LoginModel {
             preparedStatement.setString(1, pass);
             preparedStatement.setString(2, user);
 
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement.execute();
         }
         catch (Exception e)
         {
 
         }finally {
             preparedStatement.close();
-            resultSet.close();
         }
 
     }
@@ -154,6 +152,35 @@ public class LoginModel {
         }finally {
             preparedStatement.close();
         }
+    }
+
+    // function to generate a random string of length n
+    //this function was copied from GeeksforGeeks: https://www.geeksforgeeks.org/generate-random-string-of-given-size-in-java/
+    public static String getAlphaNumericString(int n)
+    {
+
+        // chose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
     }
 
     public User getCurrentUser(){

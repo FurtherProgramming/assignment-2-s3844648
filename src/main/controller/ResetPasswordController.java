@@ -2,14 +2,18 @@ package main.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import main.model.LoginModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -29,9 +33,13 @@ public class ResetPasswordController implements Initializable {
     @FXML
     private Label question;
     @FXML
+    private Label answerLabel;
+    @FXML
     private TextField txtAnswer;
     @FXML
-    private Label newPassword;
+    private Label errorMessage;
+    @FXML
+    private Button resetButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -44,7 +52,21 @@ public class ResetPasswordController implements Initializable {
                 username = loginModel.getUsername();
                 question.setText(loginModel.getQuestion());
                 answer = loginModel.getAnswer();
+
+                question.setVisible(true);
+                answerLabel.setVisible(true);
+                txtAnswer.setVisible(true);
+                resetButton.setVisible(true);
+
+                errorMessage.setText("");
+            }else{
+                errorMessage.setText("Invalid username");
+                question.setVisible(false);
+                answerLabel.setVisible(false);
+                txtAnswer.setVisible(false);
+                resetButton.setVisible(false);
             }
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -54,18 +76,27 @@ public class ResetPasswordController implements Initializable {
     public void resetPassword(ActionEvent actionEvent) {
         if (txtAnswer.getText().equals(answer)){
             //generate new password
-            String randomPassword = "testPassword";
+            String randomPassword = loginModel.getAlphaNumericString(10);
 
             try {
                 loginModel.updatePassword(username, randomPassword);
-                newPassword.setText("Your new Password is " + randomPassword);
+                errorMessage.setText("Your new Password is " + randomPassword);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
 
-        }
+        }else
+            errorMessage.setText("Incorrect Answer!");
+
     }
 
-    public void goToLogin(ActionEvent actionEvent) {
+    public void goToLogin(ActionEvent actionEvent) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
+        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setTitle("Login");
+        stage.setResizable(false);
+        stage.setScene(scene);
+        stage.show();
     }
 }
