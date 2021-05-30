@@ -91,12 +91,10 @@ public class ResetPasswordController implements Initializable {
     }
 
     public void goToLogin(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Login");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/login.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = Configuration.getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

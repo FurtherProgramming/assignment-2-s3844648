@@ -20,11 +20,6 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
     private LoginModel loginModel = new LoginModel();
-    private User currentUser;
-
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     private Label isConnected;
@@ -49,7 +44,7 @@ public class LoginController implements Initializable {
 
         try {
             if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-                currentUser = loginModel.getCurrentUser();
+                Configuration.setUser(loginModel.getCurrentUser());
                 isConnected.setText("Logged in successfully");
                 goToHome(actionEvent);
             }else{
@@ -61,44 +56,28 @@ public class LoginController implements Initializable {
     }
 
     public void goToHome(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("../ui/home.fxml"));
-        root = loader.load();
-
-        scene = new Scene(root);
-
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/home.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = Configuration.getPrimaryStage();
         String css = this.getClass().getResource("../ui/styles.css").toExternalForm();
         scene.getStylesheets().add(css);
-
-        HomeController controller = loader.getController();
-        controller.initData(currentUser);
-
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("Home");
-        stage.setResizable(false);
-
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public void goToRegister(ActionEvent actionEvent) throws IOException {
-
-        root = FXMLLoader.load(getClass().getResource("../ui/register.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Register");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/register.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = Configuration.getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public void goToReset(ActionEvent actionEvent) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("../ui/resetPassword.fxml"));
-        stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setTitle("Reset Password");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/resetPassword.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = Configuration.getPrimaryStage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

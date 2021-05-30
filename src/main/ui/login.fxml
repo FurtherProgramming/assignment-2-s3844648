@@ -17,7 +17,7 @@
             </Label>
       <TextField fx:id="txtUsername" layoutX="78.0" layoutY="55.0" promptText="Username" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="55.0" />
       <PasswordField fx:id="txtPassword" layoutX="78.0" layoutY="100.0" promptText="Password" AnchorPane.bottomAnchor="73.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="61.5" AnchorPane.topAnchor="100.0" />
-      <Button defaultButton="true" layoutX="166.0" layoutY="140.0" mnemonicParsing="false" onAction="#Login" prefHeight="29.0" prefWidth="72.0" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="140.0">
+      <Button defaultButton="true" layoutX="166.0" layoutY="140.0" mnemonicParsing="false" onAction="#Login" prefHeight="29.0" prefWidth="72.0" styleClass="loginButton" text="Login" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="166.0" AnchorPane.rightAnchor="62.0" AnchorPane.topAnchor="140.0">
          <effect>
             <Lighting bumpInput="$null">
                <light>
@@ -32,7 +32,7 @@
          <font>
             <Font name="System Font" size="13.0" />
          </font></Button>
-        <Button defaultButton="true" layoutX="78.0" layoutY="140.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="29.0" prefWidth="80.0" text="Register" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="140.0">
+        <Button defaultButton="true" layoutX="78.0" layoutY="140.0" mnemonicParsing="false" onAction="#goToRegister" prefHeight="29.0" prefWidth="80.0" styleClass="loginButton" text="Register" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="33.0" AnchorPane.leftAnchor="78.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="140.0">
             <effect>
                 <Lighting bumpInput="$null">
                     <light>
@@ -52,7 +52,7 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <Button layoutX="204.0" layoutY="178.0" mnemonicParsing="false" onAction="#goToReset" text="reset password" />
+      <Button layoutX="204.0" layoutY="178.0" mnemonicParsing="false" onAction="#goToReset" styleClass="loginButton" text="reset password" />
 
 
     </children>

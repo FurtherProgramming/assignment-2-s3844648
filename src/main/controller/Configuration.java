@@ -1,10 +1,11 @@
 package main.controller;
 
 import javafx.stage.Stage;
+import main.model.User;
 
 public class Configuration {
     private Stage primaryStage;
-    private String username;
+    private User user;
     private static final Configuration conf = new Configuration();
 
     private Configuration(){}
@@ -17,11 +18,11 @@ public class Configuration {
         return conf.primaryStage;
     }
 
-    public static void setUsername(String user){
-        conf.username = user;
+    public static void setUser(User user){
+        conf.user = user;
     }
 
-    public static String getUsername(){
-        return conf.username;
+    public static User getUser(){
+        return conf.user;
     }
 }
