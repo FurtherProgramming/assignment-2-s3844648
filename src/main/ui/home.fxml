@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Rectangle?>
@@ -9,13 +10,12 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.HomeController">
    <children>
-      <Label fx:id="welcomeMessage" layoutX="1.0" layoutY="35.0" prefHeight="35.0" prefWidth="600.0" text="Welcome">
+      <Label fx:id="welcomeMessage" layoutX="4.0" layoutY="46.0" prefHeight="35.0" prefWidth="600.0" text="Welcome">
          <font>
-            <Font size="24.0" />
+            <Font size="20.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e400" height="292.0" layoutX="27.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" width="555.0" />
-      <Button fx:id="table1" layoutX="47.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
       <ButtonBar prefHeight="40.0" prefWidth="608.0">
         <buttons>
             <Button mnemonicParsing="false" text="Manage bookings" />
@@ -23,20 +23,14 @@
           <Button mnemonicParsing="false" onAction="#goToLogin" text="Log out" />
         </buttons>
       </ButtonBar>
-      <Button fx:id="table11" layoutX="167.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table111" layoutX="305.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table112" layoutX="441.0" layoutY="112.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table113" layoutX="167.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table114" layoutX="47.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table1131" layoutX="305.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table1132" layoutX="441.0" layoutY="185.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table1141" layoutX="305.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table1142" layoutX="167.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table1143" layoutX="47.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table11411" layoutX="441.0" layoutY="254.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table11431" layoutX="441.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table11432" layoutX="305.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table11433" layoutX="167.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table11434" layoutX="47.0" layoutY="315.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table1" layoutX="189.0" layoutY="118.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table2" layoutX="329.0" layoutY="118.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table0" layoutX="59.0" layoutY="191.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table3" layoutX="459.0" layoutY="191.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table4" layoutX="459.0" layoutY="260.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table5" layoutX="329.0" layoutY="321.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table6" layoutX="189.0" layoutY="321.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table7" layoutX="59.0" layoutY="260.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <DatePicker fx:id="dp" editable="false" layoutX="408.0" layoutY="51.0" onAction="#selectDate" />
    </children>
 </AnchorPane>

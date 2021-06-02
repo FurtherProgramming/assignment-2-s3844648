@@ -154,8 +154,8 @@ public class LoginModel {
         }
     }
 
-    // function to generate a random string of length n
-    //this function was copied from GeeksforGeeks: https://www.geeksforgeeks.org/generate-random-string-of-given-size-in-java/
+    //function to generate a random string of length n
+    //source: https://www.geeksforgeeks.org/generate-random-string-of-given-size-in-java/
     public static String getAlphaNumericString(int n)
     {
 

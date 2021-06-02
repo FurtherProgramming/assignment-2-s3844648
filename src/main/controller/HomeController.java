@@ -7,6 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -15,24 +16,41 @@ import main.model.User;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
-    private LoginModel loginModel;
     private User currentUser;
+    private LocalDate selectedDate;
 
     @FXML
     private Label welcomeMessage;
     @FXML
+    private DatePicker dp;
+
+    @FXML
+    private Button table0;
+    @FXML
     private Button table1;
+    @FXML
+    private Button table2;
+    @FXML
+    private Button table3;
+    @FXML
+    private Button table4;
+    @FXML
+    private Button table5;
+    @FXML
+    private Button table6;
+    @FXML
+    private Button table7;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         currentUser = Configuration.getUser();
         welcomeMessage.setText("Welcome back, " + currentUser.getName());
     }
-
 
     public void tableTest(ActionEvent actionEvent) {
         table1.setStyle("-fx-background-color: #bd0606");
@@ -44,5 +62,14 @@ public class HomeController implements Initializable {
         Stage primaryStage = Configuration.getPrimaryStage();
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    public void selectDate(ActionEvent actionEvent) {
+        selectedDate = dp.getValue();
+        showTables();
+    }
+
+    private void showTables() {
+        welcomeMessage.setText(selectedDate.toString());
     }
 }
