@@ -22,7 +22,7 @@ public class BookingModel {
         for (int i = 0; i < numOfTables; i++){
             PreparedStatement preparedStatement = null;
             ResultSet resultSet=null;
-            String query = "select * from Booking where date = ? and table = ?";
+            String query = "select * from Booking where date = ? and tableNum = ?";
             try {
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setDate(1, Date.valueOf(date));
