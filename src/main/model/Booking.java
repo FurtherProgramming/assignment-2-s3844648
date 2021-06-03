@@ -10,8 +10,8 @@ public class Booking {
     public int table;
     public LocalDate date;
 
-    public Booking(int bookingID, int employeeID, int table, LocalDate date){
-        this.bookingID = bookingID;
+    public Booking( int employeeID, int table, LocalDate date){
+        //this.bookingID = bookingID;
         this.employeeID = employeeID;
         this.table = table;
         this.date = date;

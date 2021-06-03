@@ -1,7 +1,5 @@
 package main.model;
 
-import main.SQLConnection;
-
 public class User {
     public int userID;
     public String firstName;
@@ -19,5 +17,9 @@ public class User {
 
     public String getName(){
         return firstName;
+    }
+
+    public int getID(){
+        return userID;
     }
 }

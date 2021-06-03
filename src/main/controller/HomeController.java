@@ -83,15 +83,16 @@ public class HomeController implements Initializable {
     }
 
     public void selectDate(ActionEvent actionEvent) throws SQLException {
+        Configuration.setSelectedDate(dp.getValue());
         selectedDate = dp.getValue();
         bookings = bookingModel.getBookings(selectedDate);
         showTables();
     }
 
     private void showTables() {
-        welcomeMessage.setText(selectedDate.toString());
+        welcomeMessage.setText(Configuration.getSelectedDate().toString());
 
-        //covid locked (orange)
+        //locked (orange)
         tables.get(1).setStyle("-fx-background-color: #ff5100");
         tables.get(3).setStyle("-fx-background-color: #ff5100");
         tables.get(5).setStyle("-fx-background-color: #ff5100");
@@ -102,5 +103,17 @@ public class HomeController implements Initializable {
 
         //available (green)
 
+    }
+
+    public void table0(ActionEvent actionEvent) throws IOException {
+        Configuration.setSelectedTable(0);
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/booking.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = new Stage();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public void table1(ActionEvent actionEvent) {
     }
 }

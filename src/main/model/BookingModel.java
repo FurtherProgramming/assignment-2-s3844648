@@ -36,7 +36,7 @@ public class BookingModel {
                     int table = resultSet.getInt(3);
                     LocalDate d = resultSet.getDate(4).toLocalDate();
 
-                    Booking booking = new Booking(id, empID, table, d);
+                    Booking booking = new Booking(empID, table, d);
                     bookings.add(booking);
 
                 }else{
@@ -55,13 +55,13 @@ public class BookingModel {
     public void saveBooking (Booking booking) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
-            String query = "INSERT INTO Booking (id, employeeid, table, date)"
-                    + "VALUES (?, ?, ?, ?)";
+            String query = "INSERT INTO Booking ( employeeid, tableNum, date)"
+                    + "VALUES ( ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, booking.getBookingID());
-            preparedStatement.setInt(2, booking.getEmployeeID());
-            preparedStatement.setInt(3, booking.getTable());
-            preparedStatement.setDate(4, Date.valueOf(booking.getDate()));
+            //preparedStatement.setInt(1, booking.getBookingID());
+            preparedStatement.setInt(1, booking.getEmployeeID());
+            preparedStatement.setInt(2, booking.getTable());
+            preparedStatement.setDate(3, Date.valueOf(booking.getDate()));
 
             preparedStatement.execute();
         }
