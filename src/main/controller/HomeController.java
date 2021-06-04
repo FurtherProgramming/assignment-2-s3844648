@@ -55,6 +55,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         tables = new ArrayList<Button>();
         tables.add(table0);
         tables.add(table1);
@@ -64,8 +65,7 @@ public class HomeController implements Initializable {
         tables.add(table5);
         tables.add(table6);
         tables.add(table7);
-
-        //tables.forEach();
+        refreshTables();
 
         currentUser = Configuration.getUser();
 
@@ -88,13 +88,24 @@ public class HomeController implements Initializable {
     }
 
     private void refreshTables() {
-        welcomeMessage.setText(Configuration.getSelectedDate().toString());
+        for (int i = 0; i < tables.size(); i++){
+            int finalI = i;
+            tables.get(finalI).setOnAction(event -> {
+                Configuration.setBooking(new Booking(Configuration.getUser().getID(), finalI, selectedDate));
+                try {
+                    confirmBooking();
+                } catch (IOException | SQLException e) {
+                    e.printStackTrace();
+                }
+            });
+        }
 
         //locked (orange)
         //tables.get(1).setStyle("-fx-background-color: #ff5100");
         //tables.get(3).setStyle("-fx-background-color: #ff5100");
         //tables.get(5).setStyle("-fx-background-color: #ff5100");
         //tables.get(7).setStyle("-fx-background-color: #ff5100");
+        
         //booked (red)
 
 
@@ -111,45 +122,5 @@ public class HomeController implements Initializable {
             primaryStage.show();
         }else
             welcomeMessage.setText("Invalid table, please choose another one!");
-    }
-
-    public void table0(ActionEvent actionEvent) throws IOException, SQLException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 0, selectedDate));
-        confirmBooking();
-    }
-
-    public void table1(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 1, selectedDate));
-        confirmBooking();
-    }
-
-    public void table2(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 2, selectedDate));
-        confirmBooking();
-    }
-
-    public void table3(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 3, selectedDate));
-        confirmBooking();
-    }
-
-    public void table4(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 4, selectedDate));
-        confirmBooking();
-    }
-
-    public void table5(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 5, selectedDate));
-        confirmBooking();
-    }
-
-    public void table6(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 6, selectedDate));
-        confirmBooking();
-    }
-
-    public void table7(ActionEvent actionEvent) throws SQLException, IOException {
-        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 7, selectedDate));
-        confirmBooking();
     }
 }
