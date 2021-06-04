@@ -1,8 +1,10 @@
 package main.controller;
 
 import javafx.stage.Stage;
+import main.model.Booking;
 import main.model.User;
 
+import java.awt.print.Book;
 import java.time.LocalDate;
 
 public class Configuration {
@@ -11,6 +13,7 @@ public class Configuration {
     private User user;
     private LocalDate selectedDate;
     private int selectedTable;
+    private Booking booking;
 
     public static LocalDate getSelectedDate() {
         return conf.selectedDate;
@@ -34,6 +37,14 @@ public class Configuration {
 
     public static User getUser(){
         return conf.user;
+    }
+
+    public static void setBooking(Booking booking){
+        conf.booking = booking;
+    }
+
+    public static Booking getBooking(){
+        return conf.booking;
     }
 
     public static void setPrimaryStage(Stage stage){

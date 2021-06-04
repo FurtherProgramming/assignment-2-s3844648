@@ -65,13 +65,11 @@ public class HomeController implements Initializable {
         tables.add(table6);
         tables.add(table7);
 
+        //tables.forEach();
+
         currentUser = Configuration.getUser();
 
         welcomeMessage.setText("Welcome back, " + currentUser.getName());
-    }
-
-    public void tableTest(ActionEvent actionEvent) {
-        table1.setStyle("-fx-background-color: #bd0606");
     }
 
     public void goToLogin(ActionEvent actionEvent) throws IOException {
@@ -86,18 +84,17 @@ public class HomeController implements Initializable {
         Configuration.setSelectedDate(dp.getValue());
         selectedDate = dp.getValue();
         bookings = bookingModel.getBookings(selectedDate);
-        showTables();
+        refreshTables();
     }
 
-    private void showTables() {
+    private void refreshTables() {
         welcomeMessage.setText(Configuration.getSelectedDate().toString());
 
         //locked (orange)
-        tables.get(1).setStyle("-fx-background-color: #ff5100");
-        tables.get(3).setStyle("-fx-background-color: #ff5100");
-        tables.get(5).setStyle("-fx-background-color: #ff5100");
-        tables.get(7).setStyle("-fx-background-color: #ff5100");
-
+        //tables.get(1).setStyle("-fx-background-color: #ff5100");
+        //tables.get(3).setStyle("-fx-background-color: #ff5100");
+        //tables.get(5).setStyle("-fx-background-color: #ff5100");
+        //tables.get(7).setStyle("-fx-background-color: #ff5100");
         //booked (red)
 
 
@@ -105,15 +102,54 @@ public class HomeController implements Initializable {
 
     }
 
-    public void table0(ActionEvent actionEvent) throws IOException {
-        Configuration.setSelectedTable(0);
-        Parent root = FXMLLoader.load(getClass().getResource("../ui/booking.fxml"));
-        Scene scene = new Scene(root);
-        Stage primaryStage = new Stage();
-        primaryStage.setScene(scene);
-        primaryStage.show();
+    public void confirmBooking() throws IOException, SQLException {
+        if (bookingModel.isValidBooking(Configuration.getBooking())){
+            Parent root = FXMLLoader.load(getClass().getResource("../ui/booking.fxml"));
+            Scene scene = new Scene(root);
+            Stage primaryStage = new Stage();
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        }else
+            welcomeMessage.setText("Invalid table, please choose another one!");
     }
 
-    public void table1(ActionEvent actionEvent) {
+    public void table0(ActionEvent actionEvent) throws IOException, SQLException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 0, selectedDate));
+        confirmBooking();
+    }
+
+    public void table1(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 1, selectedDate));
+        confirmBooking();
+    }
+
+    public void table2(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 2, selectedDate));
+        confirmBooking();
+    }
+
+    public void table3(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 3, selectedDate));
+        confirmBooking();
+    }
+
+    public void table4(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 4, selectedDate));
+        confirmBooking();
+    }
+
+    public void table5(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 5, selectedDate));
+        confirmBooking();
+    }
+
+    public void table6(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 6, selectedDate));
+        confirmBooking();
+    }
+
+    public void table7(ActionEvent actionEvent) throws SQLException, IOException {
+        Configuration.setBooking(new Booking(Configuration.getUser().getID(), 7, selectedDate));
+        confirmBooking();
     }
 }

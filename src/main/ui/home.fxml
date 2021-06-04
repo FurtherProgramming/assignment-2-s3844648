@@ -24,13 +24,13 @@
         </buttons>
       </ButtonBar>
       <Button fx:id="table1" layoutX="189.0" layoutY="118.0" mnemonicParsing="false" onAction="#table1" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table2" layoutX="329.0" layoutY="118.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table2" layoutX="329.0" layoutY="118.0" mnemonicParsing="false" onAction="#table2" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
       <Button fx:id="table0" layoutX="59.0" layoutY="191.0" mnemonicParsing="false" onAction="#table0" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table3" layoutX="459.0" layoutY="191.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table4" layoutX="459.0" layoutY="260.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table5" layoutX="329.0" layoutY="321.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table6" layoutX="189.0" layoutY="321.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
-      <Button fx:id="table7" layoutX="59.0" layoutY="260.0" mnemonicParsing="false" onAction="#tableTest" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table3" layoutX="459.0" layoutY="191.0" mnemonicParsing="false" onAction="#table3" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table4" layoutX="459.0" layoutY="260.0" mnemonicParsing="false" onAction="#table4" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table5" layoutX="329.0" layoutY="321.0" mnemonicParsing="false" onAction="#table5" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table6" layoutX="189.0" layoutY="321.0" mnemonicParsing="false" onAction="#table6" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
+      <Button fx:id="table7" layoutX="59.0" layoutY="260.0" mnemonicParsing="false" onAction="#table7" prefHeight="42.0" prefWidth="92.0" styleClass="table" />
       <DatePicker fx:id="dp" editable="false" layoutX="408.0" layoutY="51.0" onAction="#selectDate" />
    </children>
 </AnchorPane>

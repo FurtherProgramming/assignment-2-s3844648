@@ -11,7 +11,6 @@ public class Booking {
     public LocalDate date;
 
     public Booking( int employeeID, int table, LocalDate date){
-        //this.bookingID = bookingID;
         this.employeeID = employeeID;
         this.table = table;
         this.date = date;

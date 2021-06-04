@@ -58,7 +58,6 @@ public class BookingModel {
             String query = "INSERT INTO Booking ( employeeid, tableNum, date)"
                     + "VALUES ( ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
-            //preparedStatement.setInt(1, booking.getBookingID());
             preparedStatement.setInt(1, booking.getEmployeeID());
             preparedStatement.setInt(2, booking.getTable());
             preparedStatement.setDate(3, Date.valueOf(booking.getDate()));
@@ -71,5 +70,84 @@ public class BookingModel {
         }finally {
             preparedStatement.close();
         }
+    }
+
+    public boolean isValidBooking(Booking booking) throws SQLException {
+        //check if table is locked
+
+        //check if table has already been booked
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Booking where tableNum = ? and date= ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, booking.getTable());
+            preparedStatement.setDate(2, Date.valueOf(booking.getDate()));
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                System.out.println("table has already been booked!");
+                return false;
+            }
+        } catch (Exception e) {
+
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+        //check if user has already booked a seat
+        preparedStatement = null;
+        resultSet=null;
+        query = "select * from Booking where employeeid = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, booking.getEmployeeID());
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                LocalDate lastBooked = resultSet.getDate(4).toLocalDate();
+                LocalDate today = LocalDate.now();
+                int difference = today.compareTo(lastBooked);
+                if (difference > 0){
+                    System.out.println("User already has another booked seat!");
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+        //check if table is same as previously booked table
+        preparedStatement = null;
+        resultSet=null;
+        query = "select * from Booking where employeeid = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, booking.getEmployeeID());
+
+            resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()){
+                if (booking.getTable() == resultSet.getInt(3)){
+                    System.out.println("User cannot book previously booked table!");
+                    return false;
+                }
+            }
+
+        } catch (Exception e) {
+
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+        return true;
     }
 }
