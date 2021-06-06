@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class BookingModel {
     Connection connection;
-    private final int numOfTables = 8;
+    private final int numOfDesks = 8;
 
     public BookingModel(){
         connection = SQLConnection.connect();
@@ -19,10 +19,10 @@ public class BookingModel {
 
     public ArrayList<Booking> getBookings(LocalDate date) throws SQLException {
         ArrayList<Booking> bookings = new ArrayList<Booking>();
-        for (int i = 0; i < numOfTables; i++){
+        for (int i = 0; i < numOfDesks; i++){
             PreparedStatement preparedStatement = null;
             ResultSet resultSet=null;
-            String query = "select * from Booking where date = ? and tableNum = ?";
+            String query = "select * from Booking where date = ? and deskNum = ?";
             try {
                 preparedStatement = connection.prepareStatement(query);
                 preparedStatement.setDate(1, Date.valueOf(date));
@@ -55,11 +55,11 @@ public class BookingModel {
     public void saveBooking (Booking booking) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
-            String query = "INSERT INTO Booking ( employeeid, tableNum, date)"
+            String query = "INSERT INTO Booking ( employeeid, deskNum, date)"
                     + "VALUES ( ?, ?, ?)";
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, booking.getEmployeeID());
-            preparedStatement.setInt(2, booking.getTable());
+            preparedStatement.setInt(2, booking.getDesk());
             preparedStatement.setDate(3, Date.valueOf(booking.getDate()));
 
             preparedStatement.execute();
@@ -78,11 +78,11 @@ public class BookingModel {
         //check if table has already been booked
         PreparedStatement preparedStatement = null;
         ResultSet resultSet=null;
-        String query = "select * from Booking where tableNum = ? and date= ?";
+        String query = "select * from Booking where deskNum = ? and date= ?";
         try {
 
             preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, booking.getTable());
+            preparedStatement.setInt(1, booking.getDesk());
             preparedStatement.setDate(2, Date.valueOf(booking.getDate()));
 
             resultSet = preparedStatement.executeQuery();
@@ -135,7 +135,7 @@ public class BookingModel {
             resultSet = preparedStatement.executeQuery();
 
             if (resultSet.next()){
-                if (booking.getTable() == resultSet.getInt(3)){
+                if (booking.getDesk() == resultSet.getInt(3)){
                     System.out.println("User cannot book previously booked table!");
                     return false;
                 }
@@ -149,5 +149,71 @@ public class BookingModel {
         }
 
         return true;
+    }
+
+    public Boolean isLocked(int deskNum) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from desk where deskNum = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, deskNum);
+
+
+            resultSet = preparedStatement.executeQuery();
+            resultSet.next();
+            if(resultSet.getBoolean(2)){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+    }
+
+    public void lockDesk(int deskNum) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "UPDATE desk SET locked = ? WHERE deskNum = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, deskNum);
+
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
+    public void unlockDesk(int deskNum) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "UPDATE desk SET locked = ? WHERE deskNum = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, deskNum);
+
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+
+        }finally {
+            preparedStatement.close();
+        }
     }
 }

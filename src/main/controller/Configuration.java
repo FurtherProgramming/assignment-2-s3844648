@@ -18,6 +18,7 @@ public class Configuration {
     private LocalDate selectedDate;
     private int selectedTable;
     private Booking booking;
+    private boolean admin;
 
     public static LocalDate getSelectedDate() {
         return conf.selectedDate;
@@ -57,6 +58,19 @@ public class Configuration {
 
     public static Stage getPrimaryStage(){
         return conf.primaryStage;
+    }
+
+    public static void setAdmin(boolean b){
+        conf.admin = b;
+    }
+
+    public static boolean isAdmin(){
+        if (conf.admin){
+            return true;
+        }else{
+            return false;
+        }
+
     }
 
     private Configuration(){}

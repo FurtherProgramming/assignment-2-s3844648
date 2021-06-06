@@ -53,6 +53,7 @@
          </font>
       </Label>
       <Button layoutX="204.0" layoutY="178.0" mnemonicParsing="false" onAction="#goToReset" styleClass="loginButton" text="reset password" />
+      <Button layoutX="206.0" mnemonicParsing="false" onAction="#loginAsAdmin" text="login as admin" />
 
 
     </children>

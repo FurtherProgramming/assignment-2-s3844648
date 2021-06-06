@@ -7,12 +7,12 @@ public class Booking {
 
     public int bookingID;
     public int employeeID;
-    public int table;
+    public int desk;
     public LocalDate date;
 
-    public Booking( int employeeID, int table, LocalDate date){
+    public Booking(int employeeID, int desk, LocalDate date){
         this.employeeID = employeeID;
-        this.table = table;
+        this.desk = desk;
         this.date = date;
     }
 
@@ -24,8 +24,8 @@ public class Booking {
         return employeeID;
     }
 
-    public int getTable() {
-        return table;
+    public int getDesk() {
+        return desk;
     }
 
     public LocalDate getDate() {

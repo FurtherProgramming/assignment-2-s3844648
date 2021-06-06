@@ -18,8 +18,8 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#e4e4e400" height="292.0" layoutX="27.0" layoutY="94.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="10.0" width="555.0" />
       <ButtonBar prefHeight="40.0" prefWidth="608.0">
         <buttons>
-            <Button mnemonicParsing="false" text="Manage bookings" />
-            <Button mnemonicParsing="false" onAction="#goToEmployeeManager" text="Manage employees" />
+            <Button fx:id="manageBookings" mnemonicParsing="false" text="Manage bookings" visible="false" />
+            <Button fx:id="manageEmployees" mnemonicParsing="false" onAction="#goToEmployeeManager" text="Manage employees" visible="false" />
           <Button mnemonicParsing="false" onAction="#goToLogin" text="Log out" />
         </buttons>
       </ButtonBar>

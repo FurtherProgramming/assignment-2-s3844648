@@ -33,6 +33,10 @@ public class HomeController implements Initializable {
     private Label welcomeMessage;
     @FXML
     private DatePicker dp;
+    @FXML
+    private Button manageBookings;
+    @FXML
+    private Button manageEmployees;
 
     @FXML
     private Button table0;
@@ -53,6 +57,13 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (Configuration.isAdmin()){
+            manageBookings.setVisible(true);
+            manageEmployees.setVisible(true);
+        }else{
+            currentUser = Configuration.getUser();
+            welcomeMessage.setText("Welcome back, " + currentUser.getName());
+        }
 
         tables = new ArrayList<Button>();
         tables.add(table0);
@@ -64,10 +75,6 @@ public class HomeController implements Initializable {
         tables.add(table6);
         tables.add(table7);
         refreshTables();
-
-        currentUser = Configuration.getUser();
-
-        welcomeMessage.setText("Welcome back, " + currentUser.getName());
     }
 
     public void goToLogin(ActionEvent actionEvent) throws IOException {
@@ -89,25 +96,52 @@ public class HomeController implements Initializable {
         for (int i = 0; i < tables.size(); i++){
             int finalI = i;
             tables.get(finalI).setOnAction(event -> {
-                Configuration.setBooking(new Booking(Configuration.getUser().getID(), finalI, selectedDate));
-                try {
-                    confirmBooking();
-                } catch (IOException | SQLException e) {
-                    e.printStackTrace();
+                if (Configuration.isAdmin()){
+                    try {
+                        if (bookingModel.isLocked(finalI)){
+                            bookingModel.unlockDesk(finalI);
+                            refreshTables();
+                        }else {
+                            bookingModel.lockDesk(finalI);
+                            refreshTables();
+                        }
+                    } catch (SQLException throwables) {
+                        throwables.printStackTrace();
+                    }
+
+                }else {
+                    Configuration.setBooking(new Booking(Configuration.getUser().getID(), finalI, selectedDate));
+                    try {
+                        confirmBooking();
+                    } catch (IOException | SQLException e) {
+                        e.printStackTrace();
+                    }
                 }
+
             });
         }
 
         //locked (orange)
-        //tables.get(1).setStyle("-fx-background-color: #ff5100");
-        //tables.get(3).setStyle("-fx-background-color: #ff5100");
-        //tables.get(5).setStyle("-fx-background-color: #ff5100");
-        //tables.get(7).setStyle("-fx-background-color: #ff5100");
+        for (int i = 0;  i < tables.size(); i++){
+            int finalI = i;
+            tables.forEach((n) -> {
+                try {
+                    if (bookingModel.isLocked(finalI)){
+                        tables.get(finalI).setStyle("-fx-background-color: #ff5100");
+                    }else {
+                        tables.get(finalI).setStyle("-fx-background-color: #223768");
+                    }
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+            });
+        }
 
         //booked (red)
 
 
         //available (green)
+
 
     }
 
