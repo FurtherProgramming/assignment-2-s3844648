@@ -3,15 +3,13 @@ package main.controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-import main.model.LoginModel;
-import main.model.User;
+import main.model.UserModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -19,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    private LoginModel loginModel = new LoginModel();
+    private UserModel userModel = new UserModel();
 
     @FXML
     private Label isConnected;
@@ -32,7 +30,7 @@ public class LoginController implements Initializable {
     // Check database connection
     @Override
     public void initialize(URL location, ResourceBundle resources){
-        if (loginModel.isDbConnected()){
+        if (userModel.isDbConnected()){
             isConnected.setText("Connected");
         }else{
             isConnected.setText("Not Connected");
@@ -43,8 +41,8 @@ public class LoginController implements Initializable {
     public void Login(ActionEvent actionEvent){
 
         try {
-            if (loginModel.isLogin(txtUsername.getText(),txtPassword.getText())){
-                Configuration.setUser(loginModel.getCurrentUser());
+            if (userModel.isLogin(txtUsername.getText(),txtPassword.getText())){
+                Configuration.setUser(userModel.getCurrentUser());
                 isConnected.setText("Logged in successfully");
                 goToHome(actionEvent);
             }else{

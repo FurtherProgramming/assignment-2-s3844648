@@ -9,11 +9,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import main.model.Booking;
 import main.model.BookingModel;
-import main.model.LoginModel;
 import main.model.User;
 
 import java.io.IOException;
@@ -105,7 +103,7 @@ public class HomeController implements Initializable {
         //tables.get(3).setStyle("-fx-background-color: #ff5100");
         //tables.get(5).setStyle("-fx-background-color: #ff5100");
         //tables.get(7).setStyle("-fx-background-color: #ff5100");
-        
+
         //booked (red)
 
 
@@ -122,5 +120,15 @@ public class HomeController implements Initializable {
             primaryStage.show();
         }else
             welcomeMessage.setText("Invalid table, please choose another one!");
+    }
+
+    public void goToEmployeeManager(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/employeeManager.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = Configuration.getPrimaryStage();
+        String css = this.getClass().getResource("../ui/styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }

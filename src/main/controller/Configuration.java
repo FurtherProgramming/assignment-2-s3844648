@@ -1,10 +1,14 @@
 package main.controller;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.model.Booking;
 import main.model.User;
 
 import java.awt.print.Book;
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Configuration {

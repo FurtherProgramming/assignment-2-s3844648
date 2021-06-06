@@ -2,7 +2,7 @@ package main.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class LoginModelTest {
+class UserModelTest {
 
     @org.junit.jupiter.api.Test
     void isDbConnected() {

@@ -19,7 +19,7 @@
       <ButtonBar prefHeight="40.0" prefWidth="608.0">
         <buttons>
             <Button mnemonicParsing="false" text="Manage bookings" />
-            <Button mnemonicParsing="false" text="Manage account" />
+            <Button mnemonicParsing="false" onAction="#goToEmployeeManager" text="Manage employees" />
           <Button mnemonicParsing="false" onAction="#goToLogin" text="Log out" />
         </buttons>
       </ButtonBar>

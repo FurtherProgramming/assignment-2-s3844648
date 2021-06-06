@@ -2,12 +2,11 @@ package main.model;
 
 import main.SQLConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
-public class LoginModel {
+public class UserModel {
 
     Connection connection;
 
@@ -20,8 +19,9 @@ public class LoginModel {
     public String username;
     public String question;
     public String answer;
+    public Boolean activated;
 
-    public LoginModel(){
+    public UserModel(){
         connection = SQLConnection.connect();
         if (connection == null)
             System.exit(1);
@@ -55,8 +55,9 @@ public class LoginModel {
                 lastName = resultSet.getString(3);
                 age = resultSet.getInt(4);
                 username = resultSet.getString(5);
+                activated = resultSet.getBoolean(10);
 
-                currentUser = new User(userID, firstName, lastName, age, username);
+                currentUser = new User(userID, firstName, lastName, age, username, activated);
                 return true;
             }
             else{
@@ -181,6 +182,38 @@ public class LoginModel {
         }
 
         return sb.toString();
+    }
+
+    public ArrayList<User> getEmployees() throws SQLException {
+        ArrayList<User> employees = new ArrayList<User>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+
+        String query = "select * from employee";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                userID = resultSet.getInt(1);
+                firstName = resultSet.getString(2);
+                lastName = resultSet.getString(3);
+                age = resultSet.getInt(4);
+                username = resultSet.getString(5);
+                activated = resultSet.getBoolean(10);
+
+                User employee = new User(userID, firstName, lastName, age, username, activated);
+                employees.add(employee);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+        return employees;
     }
 
     public User getCurrentUser(){
