@@ -16,8 +16,6 @@ import java.util.ResourceBundle;
 
 public class BookingController implements Initializable {
     private BookingModel bookingModel = new BookingModel();
-    private int selectedTable;
-    private LocalDate selectedDate;
     private Booking booking;
 
     @FXML
@@ -25,10 +23,8 @@ public class BookingController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        selectedTable = Configuration.getSelectedTable();
-        selectedDate = Configuration.getSelectedDate();
-        booking = new Booking(Configuration.getUser().getID(), selectedTable, selectedDate);
-        bookingMessage.setText("Book table " + selectedTable + " for " + selectedDate.toString() + "?");
+        booking = Configuration.getBooking();
+        bookingMessage.setText("Book desk " + booking.getDesk() + " for " + booking.getDate() + "?");
     }
 
     public void bookTable(ActionEvent actionEvent) throws SQLException {

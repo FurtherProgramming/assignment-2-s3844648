@@ -80,7 +80,6 @@ public class BookingModel {
         ResultSet resultSet=null;
         String query = "select * from Booking where deskNum = ? and date= ?";
         try {
-
             preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, booking.getDesk());
             preparedStatement.setDate(2, Date.valueOf(booking.getDate()));
@@ -215,5 +214,28 @@ public class BookingModel {
         }finally {
             preparedStatement.close();
         }
+    }
+
+    public Boolean isBooked(int deskNum, LocalDate date) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from Booking where deskNum = ? and date= ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, deskNum);
+            preparedStatement.setDate(2, Date.valueOf(date));
+
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+        return false;
     }
 }

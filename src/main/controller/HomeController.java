@@ -25,7 +25,7 @@ public class HomeController implements Initializable {
     private BookingModel bookingModel = new BookingModel();
 
     private User currentUser;
-    private LocalDate selectedDate;
+    private LocalDate selectedDate = null;
     private ArrayList<Booking> bookings;
     private ArrayList<Button> tables;
 
@@ -57,6 +57,7 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        selectedDate = null;
         if (Configuration.isAdmin()){
             manageBookings.setVisible(true);
             manageEmployees.setVisible(true);
@@ -74,7 +75,7 @@ public class HomeController implements Initializable {
         tables.add(table5);
         tables.add(table6);
         tables.add(table7);
-        refreshTables();
+        //refreshTables();
     }
 
     public void goToLogin(ActionEvent actionEvent) throws IOException {
@@ -100,10 +101,8 @@ public class HomeController implements Initializable {
                     try {
                         if (bookingModel.isLocked(finalI)){
                             bookingModel.unlockDesk(finalI);
-                            refreshTables();
                         }else {
                             bookingModel.lockDesk(finalI);
-                            refreshTables();
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();
@@ -121,28 +120,23 @@ public class HomeController implements Initializable {
             });
         }
 
-        //locked (orange)
+        //colour desks
         for (int i = 0;  i < tables.size(); i++){
             int finalI = i;
             tables.forEach((n) -> {
                 try {
-                    if (bookingModel.isLocked(finalI)){
+                    if (selectedDate != null && bookingModel.isBooked(finalI, selectedDate)){
+                        tables.get(finalI).setStyle("-fx-background-color: rgba(198,0,0,0.98)");
+                    }else if (bookingModel.isLocked(finalI)){
                         tables.get(finalI).setStyle("-fx-background-color: #ff5100");
                     }else {
-                        tables.get(finalI).setStyle("-fx-background-color: #223768");
+                        tables.get(finalI).setStyle("-fx-background-color: #00b602");
                     }
                 } catch (SQLException throwables) {
                     throwables.printStackTrace();
                 }
             });
         }
-
-        //booked (red)
-
-
-        //available (green)
-
-
     }
 
     public void confirmBooking() throws IOException, SQLException {
