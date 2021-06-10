@@ -43,15 +43,49 @@ public class EmployeeManagerController implements Initializable {
     }
 
     private void showEmployees() {
+        //clear items
+        employeeList.getItems().clear();
+        activateOptions.getChildren().clear();
+        editOptions.getChildren().clear();
+        deleteOptions.getChildren().clear();
+
         employees.forEach((n) -> {
             employeeList.getItems().add(n.getUsername() + " (" + n.getFullName() + ")");
 
-            Button activation = new Button("Activate");
-            activateOptions.getChildren().add(activation);
+            //activate & deactivate
+            try {
+                if (userModel.isActivated(n.getID())){
+                    Button activate = new Button("Deactivate");
+                    activate.setOnAction(event -> {
+                        try {
+                            userModel.deactivateUser(n.getID());
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        showEmployees();
+                    });
+                    activateOptions.getChildren().add(activate);
+                }else{
+                    Button deactivate = new Button("Activate");
+                    deactivate.setOnAction(event -> {
+                        try {
+                            userModel.activateUser(n.getID());
+                        } catch (SQLException throwables) {
+                            throwables.printStackTrace();
+                        }
+                        showEmployees();
+                    });
+                    activateOptions.getChildren().add(deactivate);
+                }
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
 
+            //edit
             Button edit = new Button("Edit");
             editOptions.getChildren().add(edit);
 
+            //delete
             Button delete = new Button("Delete");
             deleteOptions.getChildren().add(delete);
         });

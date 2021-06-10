@@ -14,9 +14,9 @@
           <Button mnemonicParsing="false" onAction="#goToHome" text="Back" />
         </buttons>
       </ButtonBar>
-      <FlowPane fx:id="activateOptions" layoutX="394.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="70.0" />
+      <FlowPane fx:id="activateOptions" alignment="TOP_CENTER" layoutX="394.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="84.0" />
       <ListView fx:id="employeeList" layoutX="4.0" layoutY="48.0" prefHeight="338.0" prefWidth="380.0" />
-      <FlowPane fx:id="editOptions" layoutX="534.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="60.0" />
-      <FlowPane fx:id="deleteOptions" layoutX="464.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="70.0" />
+      <FlowPane fx:id="editOptions" alignment="TOP_CENTER" layoutX="548.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="60.0" />
+      <FlowPane fx:id="deleteOptions" alignment="TOP_CENTER" layoutX="478.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="70.0" />
    </children>
 </AnchorPane>

@@ -216,6 +216,70 @@ public class UserModel {
         return employees;
     }
 
+    public Boolean isActivated(int employeeID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+        String query = "select * from employee where id = ? and activated = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, employeeID);
+            preparedStatement.setBoolean(2, true);
+
+            resultSet = preparedStatement.executeQuery();
+            if(resultSet.next()){
+                return true;
+            }else {
+                return false;
+            }
+        }
+        catch (Exception e)
+        {
+            return false;
+        }finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+    }
+
+    public void activateUser(int employeeID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "UPDATE employee SET activated = ? WHERE id = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setBoolean(1, true);
+            preparedStatement.setInt(2, employeeID);
+
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
+    public void deactivateUser(int employeeID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "UPDATE employee SET activated = ? WHERE id = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setBoolean(1, false);
+            preparedStatement.setInt(2, employeeID);
+
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
     public User getCurrentUser(){
         return currentUser;
     }
