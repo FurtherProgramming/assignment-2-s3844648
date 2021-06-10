@@ -75,7 +75,7 @@ public class HomeController implements Initializable {
         tables.add(table5);
         tables.add(table6);
         tables.add(table7);
-        //refreshTables();
+        refreshDesks();
     }
 
     public void goToLogin(ActionEvent actionEvent) throws IOException {
@@ -90,10 +90,10 @@ public class HomeController implements Initializable {
         Configuration.setSelectedDate(dp.getValue());
         selectedDate = dp.getValue();
         bookings = bookingModel.getBookings(selectedDate);
-        refreshTables();
+        refreshDesks();
     }
 
-    private void refreshTables() {
+    private void refreshDesks() {
         for (int i = 0; i < tables.size(); i++){
             int finalI = i;
             tables.get(finalI).setOnAction(event -> {
@@ -101,8 +101,10 @@ public class HomeController implements Initializable {
                     try {
                         if (bookingModel.isLocked(finalI)){
                             bookingModel.unlockDesk(finalI);
+                            refreshDesks();
                         }else {
                             bookingModel.lockDesk(finalI);
+                            refreshDesks();
                         }
                     } catch (SQLException throwables) {
                         throwables.printStackTrace();

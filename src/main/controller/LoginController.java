@@ -39,7 +39,7 @@ public class LoginController implements Initializable {
     }
 
     public void Login(ActionEvent actionEvent){
-
+        Configuration.setAdmin(false);
         try {
             if (userModel.isLogin(txtUsername.getText(),txtPassword.getText())){
                 Configuration.setUser(userModel.getCurrentUser());

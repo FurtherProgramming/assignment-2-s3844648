@@ -24,12 +24,14 @@ public class BookingController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         booking = Configuration.getBooking();
-        bookingMessage.setText("Book desk " + booking.getDesk() + " for " + booking.getDate() + "?");
+        bookingMessage.setText("Book seat in desk " + booking.getDesk() + " for " + booking.getDate() + "?");
+
     }
 
     public void bookTable(ActionEvent actionEvent) throws SQLException {
         bookingModel.saveBooking(booking);
         ((Node)(actionEvent.getSource())).getScene().getWindow().hide();
+
     }
 
     public void close(ActionEvent actionEvent) {

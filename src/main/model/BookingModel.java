@@ -74,6 +74,10 @@ public class BookingModel {
 
     public boolean isValidBooking(Booking booking) throws SQLException {
         //check if table is locked
+        if (isLocked(booking.getDesk())){
+            System.out.println("table is locked!");
+            return false;
+        }
 
         //check if table has already been booked
         PreparedStatement preparedStatement = null;
