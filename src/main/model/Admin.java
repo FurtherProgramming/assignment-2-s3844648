@@ -4,35 +4,32 @@ public class Admin extends User{
     public int id;
     public String firstName;
     public String lastName;
-    public int age;
     public String username;
-    public String password;
 
-    public Admin(int id, String fname, String lname, int age, String username) {
+    public Admin(int id, String fname, String lname, String username) {
         this.id = id;
         firstName = fname;
         lastName = lname;
-        this.age = age;
         this.username = username;
     }
 
     @Override
     public String getName() {
-        return null;
+        return firstName;
     }
 
     @Override
     public String getFullName() {
-        return null;
+        return firstName + " " + lastName;
     }
 
     @Override
     public int getID() {
-        return 0;
+        return id;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 }

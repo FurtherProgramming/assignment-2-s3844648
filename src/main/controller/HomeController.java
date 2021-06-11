@@ -153,7 +153,7 @@ public class HomeController implements Initializable {
     }
 
     public void goToEmployeeManager(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../ui/employeeManager.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/userManager.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = Configuration.getPrimaryStage();
         String css = this.getClass().getResource("../ui/styles.css").toExternalForm();

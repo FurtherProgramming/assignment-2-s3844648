@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeManagerController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.UserManagerController">
    <children>
       <ButtonBar layoutX="273.0" prefHeight="40.0" prefWidth="335.0">
         <buttons>
@@ -15,13 +15,13 @@
         </buttons>
       </ButtonBar>
       <FlowPane fx:id="activateOptions" alignment="TOP_CENTER" layoutX="394.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="84.0" />
-      <ListView fx:id="employeeList" layoutX="4.0" layoutY="48.0" prefHeight="338.0" prefWidth="380.0" />
+      <ListView fx:id="userList" layoutX="4.0" layoutY="48.0" prefHeight="338.0" prefWidth="380.0" />
       <FlowPane fx:id="editOptions" alignment="TOP_CENTER" layoutX="548.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="60.0" />
       <FlowPane fx:id="deleteOptions" alignment="TOP_CENTER" layoutX="478.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="70.0" />
       <ButtonBar layoutX="4.0" layoutY="8.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="348.0">
         <buttons>
           <Button mnemonicParsing="false" onAction="#addUser" text="Add user" />
-            <Button mnemonicParsing="false" onAction="#toggleUsers" text="Show Admin/Employee" />
+            <Button fx:id="toggle" mnemonicParsing="false" onAction="#toggleUsers" prefHeight="25.0" prefWidth="171.0" text="Show Admin" />
         </buttons>
       </ButtonBar>
    </children>

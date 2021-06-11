@@ -38,12 +38,12 @@ public class AddUserController {
     }
 
     public void addAdmin(ActionEvent actionEvent) throws SQLException, IOException {
-        userModel.addAdmin(firstname.getText(), lastname.getText(), "", username.getText(), password.getText(), role.getText(), question.getText(), answer.getText());
+        userModel.addAdmin(firstname.getText(), lastname.getText(), username.getText(), password.getText(), role.getText(), question.getText(), answer.getText());
         goToEmployeeManager(actionEvent);
     }
 
     public void goToEmployeeManager(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../ui/employeeManager.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/userManager.fxml"));
         Scene scene = new Scene(root);
         Stage primaryStage = Configuration.getPrimaryStage();
         String css = this.getClass().getResource("../ui/styles.css").toExternalForm();

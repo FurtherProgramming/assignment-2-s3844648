@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import main.model.Admin;
 import main.model.Employee;
 import main.model.UserModel;
 
@@ -19,39 +20,44 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-public class EmployeeManagerController implements Initializable {
+public class UserManagerController implements Initializable {
     private UserModel userModel = new UserModel();
     private ArrayList<Employee> employees;
-    private ArrayList<Employee> admins;
+    private ArrayList<Admin> admins;
+    private boolean showingEmployees;
 
     @FXML
-    private ListView employeeList;
+    private ListView userList;
     @FXML
     private FlowPane activateOptions;
     @FXML
     private FlowPane editOptions;
     @FXML
     private FlowPane deleteOptions;
+    @FXML
+    private Button toggle;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         try {
             employees = userModel.getEmployees();
+            admins = userModel.getAdmins();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        showingEmployees = true;
         showEmployees();
     }
 
     private void showEmployees() {
         //clear items
-        employeeList.getItems().clear();
+        userList.getItems().clear();
         activateOptions.getChildren().clear();
         editOptions.getChildren().clear();
         deleteOptions.getChildren().clear();
 
         employees.forEach((n) -> {
-            employeeList.getItems().add(n.getUsername() + " (" + n.getFullName() + ")");
+            userList.getItems().add(n.getUsername() + " (" + n.getFullName() + ")");
 
             //activate & deactivate
             try {
@@ -101,6 +107,35 @@ public class EmployeeManagerController implements Initializable {
         });
     }
 
+    private void showAdmins() {
+        //clear items
+        userList.getItems().clear();
+        activateOptions.getChildren().clear();
+        editOptions.getChildren().clear();
+        deleteOptions.getChildren().clear();
+
+        admins.forEach((n) -> {
+            userList.getItems().add(n.getUsername() + " (" + n.getFullName() + ")");
+
+            //edit
+            Button edit = new Button("Edit");
+            editOptions.getChildren().add(edit);
+
+            //delete
+            Button delete = new Button("Delete");
+            delete.setOnAction(event -> {
+                try {
+                    userModel.deleteUser(n.getID());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                admins.remove(n);
+                showAdmins();
+            });
+            deleteOptions.getChildren().add(delete);
+        });
+    }
+
     public void goToHome(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("../ui/home.fxml"));
         Scene scene = new Scene(root);
@@ -122,5 +157,15 @@ public class EmployeeManagerController implements Initializable {
     }
 
     public void toggleUsers(ActionEvent actionEvent) {
+        if (showingEmployees){
+            showAdmins();
+            showingEmployees = false;
+            toggle.setText("Show Employees");
+        }else{
+            showEmployees();
+            showingEmployees = true;
+            toggle.setText("Show Admins");
+        }
+
     }
 }

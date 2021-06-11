@@ -154,7 +154,7 @@ public class UserModel {
         }
     }
 
-    public void addAdmin(String firstname, String lastname, String age, String username, String password, String role, String question, String answer) throws SQLException {
+    public void addAdmin(String firstname, String lastname, String username, String password, String role, String question, String answer) throws SQLException {
         PreparedStatement preparedStatement = null;
         try {
             String query = "INSERT INTO Admin (firstname, lastname, username, password, role, question, answer)"
@@ -238,6 +238,36 @@ public class UserModel {
         }
 
         return employees;
+    }
+
+    public ArrayList<Admin> getAdmins() throws SQLException {
+        ArrayList<Admin> admins = new ArrayList<Admin>();
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet=null;
+
+        String query = "select * from Admin";
+        try {
+            preparedStatement = connection.prepareStatement(query);
+
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                userID = resultSet.getInt(1);
+                firstName = resultSet.getString(2);
+                lastName = resultSet.getString(3);
+                username = resultSet.getString(4);
+
+                Admin admin = new Admin(userID, firstName, lastName, username);
+                admins.add(admin);
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            preparedStatement.close();
+            resultSet.close();
+        }
+
+        return admins;
     }
 
     public Boolean isActivated(int employeeID) throws SQLException {
