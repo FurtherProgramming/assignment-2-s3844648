@@ -6,11 +6,12 @@ To run the program. right click on Main.java and choose Run.
 DESIGN DECISIONS:
 
 An MVC design pattern was used in this project. Code that communicates with the database were sorted into the 'model' directory.
-files relating to the user interface such as FXML and CSS files were sorted in the 'ui' directory.
-Code that handles user input from ui and uses it to call methods from the Model were sorted into the 'controller' directory.
+files relating to the employee interface such as FXML and CSS files were sorted in the 'ui' directory.
+Code that handles employee input from ui and uses it to call methods from the Model were sorted into the 'controller' directory.
 
 Singleton pattern was used to create a class which stores variables so they could be easily accessed across multiple stages.
 
+An abstract class was used for User, this abstract class is used for the two types of users: Employee and Admin who both have some similar methods.
 
 DATABASE:
 
@@ -29,3 +30,4 @@ columns were added for the reset password features while the 'activated' column 
 
 login.fxml, UserModel and User were also modified to implement features such as registering, resetting passwords and logging in as admin
 
+User was made into an abstract class which the employee and admin class extends.
