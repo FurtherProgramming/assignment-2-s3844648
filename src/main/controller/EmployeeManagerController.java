@@ -87,6 +87,15 @@ public class EmployeeManagerController implements Initializable {
 
             //delete
             Button delete = new Button("Delete");
+            delete.setOnAction(event -> {
+                try {
+                    userModel.deleteUser(n.getID());
+                } catch (SQLException throwables) {
+                    throwables.printStackTrace();
+                }
+                employees.remove(n);
+                showEmployees();
+            });
             deleteOptions.getChildren().add(delete);
         });
     }

@@ -280,6 +280,24 @@ public class UserModel {
         }
     }
 
+    public void deleteUser(int employeeID) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        String query = "DELETE FROM employee WHERE id = ?";
+        try {
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, employeeID);
+
+            preparedStatement.execute();
+        }
+        catch (Exception e)
+        {
+
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
     public User getCurrentUser(){
         return currentUser;
     }
