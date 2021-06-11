@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 public class EmployeeManagerController implements Initializable {
     private UserModel userModel = new UserModel();
     private ArrayList<Employee> employees;
+    private ArrayList<Employee> admins;
 
     @FXML
     private ListView employeeList;
@@ -110,4 +111,16 @@ public class EmployeeManagerController implements Initializable {
         primaryStage.show();
     }
 
+    public void addUser(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../ui/addUser.fxml"));
+        Scene scene = new Scene(root);
+        Stage primaryStage = Configuration.getPrimaryStage();
+        String css = this.getClass().getResource("../ui/styles.css").toExternalForm();
+        scene.getStylesheets().add(css);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public void toggleUsers(ActionEvent actionEvent) {
+    }
 }

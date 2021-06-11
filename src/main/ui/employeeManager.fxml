@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.EmployeeManagerController">
    <children>
-      <ButtonBar prefHeight="40.0" prefWidth="608.0">
+      <ButtonBar layoutX="273.0" prefHeight="40.0" prefWidth="335.0">
         <buttons>
             <Button mnemonicParsing="false" text="Manage bookings" />
           <Button mnemonicParsing="false" onAction="#goToHome" text="Back" />
@@ -18,5 +18,11 @@
       <ListView fx:id="employeeList" layoutX="4.0" layoutY="48.0" prefHeight="338.0" prefWidth="380.0" />
       <FlowPane fx:id="editOptions" alignment="TOP_CENTER" layoutX="548.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="60.0" />
       <FlowPane fx:id="deleteOptions" alignment="TOP_CENTER" layoutX="478.0" layoutY="48.0" orientation="VERTICAL" prefHeight="338.0" prefWidth="70.0" />
+      <ButtonBar layoutX="4.0" layoutY="8.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="348.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#addUser" text="Add user" />
+            <Button mnemonicParsing="false" onAction="#toggleUsers" text="Show Admin/Employee" />
+        </buttons>
+      </ButtonBar>
    </children>
 </AnchorPane>

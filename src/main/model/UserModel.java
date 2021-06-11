@@ -154,6 +154,31 @@ public class UserModel {
         }
     }
 
+    public void addAdmin(String firstname, String lastname, String age, String username, String password, String role, String question, String answer) throws SQLException {
+        PreparedStatement preparedStatement = null;
+        try {
+            String query = "INSERT INTO Admin (firstname, lastname, username, password, role, question, answer)"
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+            preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, firstname);
+            preparedStatement.setString(2, lastname);
+            preparedStatement.setString(3, username);
+            preparedStatement.setString(4, password);
+            preparedStatement.setString(5, role);
+            preparedStatement.setString(6, question);
+            preparedStatement.setString(7, answer);
+
+            preparedStatement.execute();
+        }catch (Exception e)
+        {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }finally {
+            preparedStatement.close();
+        }
+    }
+
     //function to generate a random string of length n
     //source: https://www.geeksforgeeks.org/generate-random-string-of-given-size-in-java/
     public static String getAlphaNumericString(int n)
@@ -296,6 +321,8 @@ public class UserModel {
             preparedStatement.close();
         }
     }
+
+
 
     public Employee getCurrentUser(){
         return currentEmployee;

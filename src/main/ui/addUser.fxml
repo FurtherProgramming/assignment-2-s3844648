@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.controller.AddUserController">
+   <children>
+      <ButtonBar prefHeight="40.0" prefWidth="608.0">
+         <buttons>
+            <Button mnemonicParsing="false" onAction="#goToEmployeeManager" text="back" />
+         </buttons></ButtonBar>
+      <TextField fx:id="username" layoutX="90.0" layoutY="130.0" promptText="username" />
+      <TextField fx:id="question" layoutX="90.0" layoutY="180.0" promptText="secret question" />
+      <TextField fx:id="answer" layoutX="350.0" layoutY="180.0" promptText="secret answer" />
+      <TextField fx:id="password" layoutX="350.0" layoutY="130.0" promptText="password" />
+      <TextField fx:id="role" layoutX="220.0" layoutY="231.0" promptText="role" />
+      <TextField fx:id="firstname" layoutX="90.0" layoutY="80.0" promptText="first name" />
+      <TextField fx:id="lastname" layoutX="350.0" layoutY="80.0" promptText="last name" />
+      <ButtonBar buttonMinWidth="200.0" layoutX="60.0" layoutY="281.0" prefHeight="40.0" prefWidth="439.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#addEmployee" text="Create new Employee" />
+            <Button mnemonicParsing="false" onAction="#addAdmin" text="Create new Admin" />
+        </buttons>
+      </ButtonBar>
+   </children>
+</AnchorPane>
