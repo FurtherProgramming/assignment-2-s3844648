@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
-import main.model.User;
+import main.model.Employee;
 import main.model.UserModel;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ import java.util.ResourceBundle;
 
 public class EmployeeManagerController implements Initializable {
     private UserModel userModel = new UserModel();
-    private ArrayList<User> employees;
+    private ArrayList<Employee> employees;
 
     @FXML
     private ListView employeeList;

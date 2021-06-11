@@ -1,20 +1,15 @@
 package main.controller;
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import main.model.Booking;
-import main.model.User;
+import main.model.Employee;
 
-import java.awt.print.Book;
-import java.io.IOException;
 import java.time.LocalDate;
 
 public class Configuration {
     private static final Configuration conf = new Configuration();
     private Stage primaryStage;
-    private User user;
+    private Employee employee;
     private LocalDate selectedDate;
     private int selectedTable;
     private Booking booking;
@@ -36,12 +31,12 @@ public class Configuration {
         conf.selectedTable = selectedTable;
     }
 
-    public static void setUser(User user){
-        conf.user = user;
+    public static void setUser(Employee employee){
+        conf.employee = employee;
     }
 
-    public static User getUser(){
-        return conf.user;
+    public static Employee getUser(){
+        return conf.employee;
     }
 
     public static void setBooking(Booking booking){

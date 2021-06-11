@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import main.model.Booking;
 import main.model.BookingModel;
-import main.model.User;
+import main.model.Employee;
 
 import java.io.IOException;
 import java.net.URL;
@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class HomeController implements Initializable {
     private BookingModel bookingModel = new BookingModel();
 
-    private User currentUser;
+    private Employee currentEmployee;
     private LocalDate selectedDate = null;
     private ArrayList<Booking> bookings;
     private ArrayList<Button> tables;
@@ -62,8 +62,8 @@ public class HomeController implements Initializable {
             manageBookings.setVisible(true);
             manageEmployees.setVisible(true);
         }else{
-            currentUser = Configuration.getUser();
-            welcomeMessage.setText("Welcome back, " + currentUser.getName());
+            currentEmployee = Configuration.getUser();
+            welcomeMessage.setText("Welcome back, " + currentEmployee.getName());
         }
 
         tables = new ArrayList<Button>();

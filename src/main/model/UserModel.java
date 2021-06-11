@@ -3,7 +3,6 @@ package main.model;
 import main.SQLConnection;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class UserModel {
@@ -11,7 +10,7 @@ public class UserModel {
     Connection connection;
 
     public boolean isLoggedIn = false;
-    public User currentUser;
+    public Employee currentEmployee;
     public int userID;
     public String firstName;
     public String lastName;
@@ -57,7 +56,7 @@ public class UserModel {
                 username = resultSet.getString(5);
                 activated = resultSet.getBoolean(10);
 
-                currentUser = new User(userID, firstName, lastName, age, username, activated);
+                currentEmployee = new Employee(userID, firstName, lastName, age, username, activated);
                 return true;
             }
             else{
@@ -184,8 +183,8 @@ public class UserModel {
         return sb.toString();
     }
 
-    public ArrayList<User> getEmployees() throws SQLException {
-        ArrayList<User> employees = new ArrayList<User>();
+    public ArrayList<Employee> getEmployees() throws SQLException {
+        ArrayList<Employee> employees = new ArrayList<Employee>();
         PreparedStatement preparedStatement = null;
         ResultSet resultSet=null;
 
@@ -203,7 +202,7 @@ public class UserModel {
                 username = resultSet.getString(5);
                 activated = resultSet.getBoolean(10);
 
-                User employee = new User(userID, firstName, lastName, age, username, activated);
+                Employee employee = new Employee(userID, firstName, lastName, age, username, activated);
                 employees.add(employee);
             }
         } catch (SQLException throwables) {
@@ -298,8 +297,8 @@ public class UserModel {
         }
     }
 
-    public User getCurrentUser(){
-        return currentUser;
+    public Employee getCurrentUser(){
+        return currentEmployee;
     }
 
     public String getQuestion() {
